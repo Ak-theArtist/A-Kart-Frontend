@@ -77,7 +77,7 @@ function App() {
           <Loading />
         ) : (
           <>
-            <Navbar mode={mode} changeMode={changeMode} adminInfo={adminInfo} />
+            <Navbar mode={mode} changeMode={changeMode} />
             <Routes>
               <Route exact path="/" element={<Shop />} />
               <Route exact path="/men" element={<ShopCategory banner={men_banner} category="men" />} />
