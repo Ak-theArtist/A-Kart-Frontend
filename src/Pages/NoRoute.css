@@ -1,0 +1,6 @@
+.no-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 81vh;
+}

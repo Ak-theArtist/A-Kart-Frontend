@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.09s ease-in-out;
+}
+
+body {
+  font-family: 'poppins';
+  /* background-color: rgba(34, 33, 33, 0.877); */
+  background-color: rgba(234, 232, 232, 0.905);
+  /* overflow-x: hidden; */
+  
+}
+/* Total width */
+::-webkit-scrollbar {
+  width: 12px; /* Adjust the width */
+}
+
+/* Background of the scrollbar track */
+::-webkit-scrollbar-track {
+  background: #cfcbcb; /* Color of the track */
+}
+
+/* Handle of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #041982; /* Color of the handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #02115c; /* Darker color on hover */
+}

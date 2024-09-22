@@ -1,0 +1,329 @@
+.cartitems {
+    margin: 100px 10%;
+}
+
+.cartitems hr {
+    height: 2px;
+    background: #e2e2e2;
+    border: 0;
+}
+
+.cartitems-format-main {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+    padding: 20px 0px;
+    /* color: #454545; */
+    font-size: 16px;
+    font-weight: 600;
+}
+.ant-modal-content{
+    padding: 20px !important;
+}
+.cartitems-format {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.carticon-product-icon {
+    height: 55px;
+}
+
+.cartitems-remove-icon {
+    width: 12px;
+    cursor: pointer;
+    margin: 0px 30px;
+}
+.cursor{
+    cursor: pointer;
+}
+
+.cartitems-quantity {
+    width: 55px;
+    height: 45px;
+    border: 2px solid #ebebeb;
+    background: #fff;
+}
+
+.cartitems-down {
+    display: flex;
+    margin: 100px 0px;
+}
+
+.cartitems-total {
+    display: flex;
+    margin: auto;
+    width: 60vw;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.cartitems-total-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0px;
+}
+
+.cartitems-total button {
+    width: 220px;
+    height: 50px;
+    outline: none;
+    border: none;
+    background: #094093;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cartitems-promocode {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.cartitems-promobox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 400px;
+    margin-top: 15px;
+    height: 50px;
+    background: #eaeaea;
+}
+
+.cartitems-promobox input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    flex: 1;
+    height: 100%;
+    padding-left: 20px;
+}
+
+.cartitems-promobox button {
+    width: 130px;
+    height: 100%;
+    font-size: 16px;
+    border: none;
+    background: #094093;
+    color: white;
+    cursor: pointer;
+}
+
+.cross-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: .3s;
+    overflow: hidden;
+    position: relative;
+}
+
+.svgIcon {
+    width: 12px;
+    transition-duration: .3s;
+}
+
+.svgIcon path {
+    fill: #021068;
+}
+
+.cross-button:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: .3s;
+    background-color: #021068;
+    align-items: center;
+}
+
+.cross-button::before {
+    position: absolute;
+    top: -15px;
+    content: "Delete";
+    color: white;
+    transition-duration: .3s;
+    font-size: 2px;
+}
+
+.cross-button:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    transform: translateY(30px);
+    transition-duration: .3s;
+}
+
+.emptyCart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    height: 52vh;
+    flex-direction: column;
+}
+.emptyCart img{
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.checkout-modal select {
+    border: none; 
+    outline: none; 
+    padding: 8px; 
+    border-radius: 4px; 
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1); 
+    font-size: 16px; 
+    background-color: #f9f9f9; 
+    width: 100%; 
+    cursor: pointer;
+}
+
+.checkout-modal select:focus {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2); 
+}
+
+.checkout-modal .ant-form-item {
+    margin-bottom: 16px; 
+}
+
+@media(max-width:1280px) {
+    .cartitems {
+        margin: 60px 8%;
+    }
+    .cartitems-down{
+        justify-content: center;
+    }
+    .cartitems-format-main {
+        grid-template-columns: 0.5fr 2fr 0.5fr 0.5fr 0.5fr 0.5fr;
+        gap: 20px;
+        padding: 15px 0px;
+        font-size: 15px;
+    }
+    .cartitems-format-main p{
+        font-size: small;
+    }
+    .cartitems-format {
+        font-size: 15px;
+    }
+
+    .carticon-product-icon {
+        height: 50px;
+        overflow: hidden;
+        width: 30px;
+        object-fit: cover;
+        object-position: top;
+        margin-right: 5px;
+    }
+    .cursor {
+        font-size: small;
+    }
+    .cartitems-remove-icon {
+        margin: auto;
+    }
+
+    .cartitems-quantity {
+        width: 40px;
+        height: 30px;
+    }
+
+    .cartitems-down {
+        margin: 80px 0px;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    .cartitems-total {
+        margin: 0;
+        /* min-width: 300px; */
+    }
+
+    .cartitems-total button {
+        max-width: 200px;
+        height: 45px;
+        font-size: 13px;
+    }
+
+    .cartitems-promobox {
+        width: 90%;
+        /* max-width: 500px; */
+    }
+
+}
+@media (max-width: 768px){
+    .cartitems-format-main p {
+        font-size: x-small;
+        text-align: center;
+        text-wrap: wrap;
+    }
+    .cross-button {
+        width: 40px;
+        height: 40px;
+    }
+    .cartitems {
+        margin: 20px 4%;
+    }
+    .cartitems-total{
+        width: 85vw;
+    }
+}
+
+@media(max-width:500px) {
+    .cartitems-format-main {
+        display: none;
+    }
+    .price{
+        display: none;
+    }
+
+    .cartitems-format {
+        display: grid;
+        align-items: center;
+    }
+    .cartitems-total button {
+        max-width: 125px;
+        height: 30px;
+        font-size: 8px;
+    }
+    .cartitems-total h1{
+        font-size: large;
+        font-weight: 600;
+    }
+    .cartitems-format-main {
+        grid-template-columns: 0.5fr 2fr 0.5fr 0.5fr;
+        gap: 0px;
+        margin-right: 40px;
+    }
+    .cross-button{
+        position: absolute;
+        right: 3%;
+    }
+    .cartitems-total{
+        width: 85vw;
+        gap: 0px !important;
+    }
+    .cursor {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        line-clamp: 2;
+        -webkit-line-clamp: 2; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.5; 
+        max-height: 3em; 
+    }
+    .cross-button {
+        width: 30px;
+        height: 30px;
+    }
+    
+}

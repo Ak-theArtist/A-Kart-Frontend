@@ -1,0 +1,55 @@
+.error-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.message h4 {
+    text-shadow: 10px 5px 10px black;
+}
+
+.video {
+    z-index: -1;
+    filter: grayscale(50%) contrast(0.5) brightness(80%);
+    position: absolute;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gif {
+    border-radius: 50%;
+    -webkit-box-shadow: 12px 29px 81px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 12px 29px 81px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 12px 29px 81px 0px rgba(0, 0, 0, 0.75);
+}
+@media (max-width: 1280px) {
+    .toggle-calculator-button{
+        display: none;
+    }
+    .toggle-game-button{
+        display: none;
+    }
+}
+@media (max-width: 560px) {
+    .message h4 {
+        font-size: small;
+    }
+
+    .gif {
+        height: 50%;
+    }
+
+    .error-page {
+        justify-content: flex-start;
+    }
+}

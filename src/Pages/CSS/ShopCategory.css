@@ -1,0 +1,133 @@
+.shopcategory-banner {
+    display: block;
+    width: 99%;
+    margin: 0 5px 15px 5px;
+}
+
+.shopcategory-indexSort {
+    display: flex;
+    margin: 0px 170px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shopcategory-sort {
+    padding: 10px 20px;
+    border-radius: 40px;
+    border: 1px solid #888;
+}
+
+.shopcategory-indexSort p span {
+    font-weight: 600;
+}
+
+.shopcategory-products {
+    width: 90%;
+    max-width: 1360px;
+    justify-content: center;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+
+}
+
+.shopcategory-loadmore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 00px auto 20px auto;
+    border-radius: 75px;
+}
+
+.button-explore {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(2, 16, 104);
+    border-radius: 30px;
+    color: whitesmoke;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition-duration: .2s;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.116);
+    transition-duration: .5s;
+  }
+  
+  .bell path {
+    fill: rgb(19, 19, 19);
+  }
+  
+  .button-explore:hover {
+    background-color: gray;
+    transition-duration: .5s;
+  }
+  
+  .button-explore:active {
+    transform: scale(0.97);
+    transition-duration: .2s;
+  }
+  
+  .button-explore:hover .svgIcon {
+    transform: rotate(250deg);
+    transition-duration: 1.5s;
+  }
+  .shopcategory-sort select {
+    background: none; 
+    border: none; 
+    color: inherit; 
+    font: inherit;
+    padding: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    cursor: pointer;
+  }
+  .shopcategory-sort select:hover{
+    color: gray;
+  }
+  
+  .shopcategory-sort select:focus {
+    outline: none; 
+  }
+  
+  
+
+@media (max-width:1280px) {
+    .shopcategory-banner {
+        margin: 0px 0 20px 0 !important;
+        width: 100% !important;
+    }
+
+    .shopcategory-indexSort {
+        width: 90%;
+        margin: auto;
+    }
+
+    .shopcategory-sort {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .shopcategory-indexSort p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width:800px) {
+    .shopcategory-banner {
+        width: 95%;
+    }
+    .shopcategory-products {
+      gap: 15px;
+  }
+}
+@media (max-width:450px) {
+  .shopcategory-indexSort{
+    flex-direction: column;
+    gap: 8px;
+  }
+}

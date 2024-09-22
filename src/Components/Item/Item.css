@@ -1,0 +1,135 @@
+.item {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+    margin-bottom: 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.inner-container {
+    height: 300px;
+    width: 250px;
+    position: relative;
+    cursor: pointer;
+}
+
+.inner-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+#image1 {
+    object-fit: cover;
+    object-position: top;
+    height: 100%;
+    width: 100%;
+}
+
+#image2 {
+    opacity: 0;
+    object-fit: cover;
+    object-position: top;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#image3 {
+    opacity: 0;
+}
+
+#image4 {
+    opacity: 0;
+}
+
+#image2:hover {
+    opacity: 1;
+}
+
+.item p {
+    margin: 5px 0px;
+    padding: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.item-prices {
+    display: flex;
+    gap: 10px;
+}
+
+.item-prices-new {
+    color: #374152;
+    font-size: 20px;
+    font-weight: 600px;
+}
+
+.item-discount {
+    color: #034cba;
+    font-size: 15px;
+    font-weight: 500px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.item-price-old {
+    color: #8c8c8c;
+    font-size: 15px;
+    font-weight: 500px;
+    text-decoration: line-through;
+}
+
+.item:hover {
+    transform: scale(1.05);
+    transition: 0.1s;
+}
+
+.product-name {
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+hr {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .item p {
+        padding: 0px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .item {
+        width: 150px;
+    }
+
+    .inner-container {
+        height: 190px;
+        width: 100%;
+    }
+}
+
+@media (max-width:350px) {
+    .item {
+        width: 115px;
+    }
+
+    .inner-container {
+        height: 160px;
+        width: 100%;
+    }
+    *{
+        font-size: x-small;
+    }
+}

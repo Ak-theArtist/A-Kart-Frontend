@@ -1,0 +1,331 @@
+.listproduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 50px;
+  margin: 10px;
+  border-radius: 6px;
+  background-color: rgba(128, 128, 128, 0.052);
+  width: 80vw;
+  overflow-y: hidden !important;
+}
+.delete-modal .ant-modal-content{
+  padding: 10px !important;
+}
+
+.listproduct-format-main {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  padding: 20px 0px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  cursor: pointer;
+}
+
+.listproduct-format-main p {
+  padding-left: 25px;
+}
+
+.listproduct-format p {
+  margin-left: 10px;
+}
+
+.name {
+  cursor: pointer;
+}
+
+.listproduct-format {
+  width: 100%;
+  align-items: center;
+  font-weight: 500;
+  margin-bottom: -4px;
+}
+
+.img-listProduct {
+  width: 50px;
+  height: 70px;
+}
+
+.listproduct-product-icon {
+  margin-left: 30px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: top center;
+  cursor: pointer;
+}
+
+.listproduct-remove-icon {
+  cursor: pointer;
+  margin: auto;
+}
+
+.listproduct-allproducts {
+  width: 100%;
+  height: 480px;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+  box-shadow: 2px 2px 9px -4px rgba(0, 0, 0, 0.75);
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #094093;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none !important;
+}
+
+.edit-svgIcon {
+  width: 17px;
+  transition-duration: 0.3s;
+}
+
+.edit-svgIcon path {
+  fill: white;
+}
+
+.edit-btn:hover {
+  width: 120px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: #062451;
+  align-items: center;
+}
+
+.edit-btn:hover .edit-svgIcon {
+  width: 20px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.edit-btn::before {
+  display: none;
+  content: "Edit";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 2px;
+}
+
+.edit-btn:hover::before {
+  display: block;
+  padding-right: 10px;
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(0px);
+  transition-duration: 0.3s;
+}
+
+.delete-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #094093;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.delete-svgIcon {
+  width: 15px;
+  transition-duration: 0.3s;
+}
+
+.delete-svgIcon path {
+  fill: white;
+}
+
+.delete-btn:hover {
+  width: 90px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: rgb(242, 15, 15);
+  align-items: center;
+}
+
+.delete-btn:hover .delete-svgIcon {
+  width: 20px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.delete-btn::before {
+  display: none;
+  content: "Delete";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 2px;
+}
+
+.delete-btn:hover::before {
+  display: block;
+  padding-right: 10px;
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(0px);
+  transition-duration: 0.3s;
+}
+
+@media (max-width: 1200px) {
+  .listproduct {
+    width: 100vw;
+  }
+
+  .listproduct h3 {
+    font-size: large;
+  }
+
+  .name {
+    max-width: 150px;
+  }
+
+  .listproduct-format-main p {
+    font-size: small;
+  }
+
+  .listproduct-format-main {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 5px;
+  }
+}
+
+@media(max-width:900px) {
+  .listproduct {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 10px 30px;
+    margin: 5px auto;
+  }
+
+  .img-listProduct {
+    width: 40px;
+    height: 60px;
+  }
+
+  .name {
+    max-width: 140px;
+    margin-left: 0px !important;
+  }
+
+  .listproduct-format-main p {
+    font-size: xx-small;
+  }
+
+  .listproduct-format-main {
+    padding: 15px 0px;
+    font-size: 12px;
+  }
+
+  .listproduct-product-icon {
+    height: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .img-listProduct {
+    width: 40px;
+  }
+
+  .listproduct-format-main p {
+    padding-left: 20px;
+  }
+
+  .listproduct-format-main {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .old-price,
+  .new-price {
+    display: none;
+  }
+
+  .edit-svgIcon,
+  .delete-svgIcon {
+    width: 10px !important;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    background-color: #094093 !important;
+    transition: none !important;
+  }
+
+  .edit-btn:hover,
+  .delete-btn:hover {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    background-color: #094093 !important;
+  }
+
+  .edit-btn:hover .edit-svgIcon,
+  .delete-btn:hover .delete-svgIcon {
+    width: 10px !important;
+    transform: none !important;
+  }
+
+  .edit-btn::before,
+  .delete-btn::before {
+    display: none !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .name{
+    display: none;
+  }
+  .listproduct-format-main {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .listproduct {
+    padding: 10px 10px;
+    margin: 0px auto;
+}
+}

@@ -1,0 +1,244 @@
+.admin-orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 50px;
+  margin: 15px 30px;
+  border-radius: 6px;
+  background-color: rgba(128, 128, 128, 0.052);
+  width: 80vw;
+  overflow-y: hidden !important;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+
+.dropdown {
+  display: inline-block;
+  position: absolute;
+}
+
+.dropbtn {
+  --color: #073477;
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  height: 2.5em;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color .5s;
+  z-index: 1;
+  font-size: 15px;
+  border-radius: 6px;
+  font-weight: bolder;
+  color: var(--color);
+}
+
+.dropbtn:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: #073477;
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.dropbtn:hover {
+  color: #fff;
+}
+
+.dropbtn:before {
+  top: 100%;
+  left: 100%;
+  transition: all .7s;
+}
+
+.dropbtn:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.dropbtn:active:before {
+  background: #073477;
+  transition: background 0s;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 4;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 8px 12px;
+  font-size: 14px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.admin-orders-header,
+.admin-orders-item {
+  width: 100%;
+  font-size: 15px;
+  font-weight: 600;
+  height: fit-content;
+}
+
+.admin-orders-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-height: 65vh;
+  min-height: 460px;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+  box-shadow: 2px 2px 9px -4px rgba(0, 0, 0, 0.75);
+}
+
+.admin-orders-item {
+  align-items: center;
+  font-weight: 500;
+}
+
+.admin-orders-item p {
+  margin: 0 20px;
+}
+
+.action-buttons-order {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.order-id {
+  margin-top: 20px !important;
+}
+
+.orderButtons {
+  display: flex;
+  margin: 5px 0 20px 0;
+  padding: 0 20px;
+}
+
+.edit-btn,
+.delete-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #094093;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 9px -4px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  width: 90px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: #062451;
+  align-items: center;
+}
+
+.edit-btn:hover {
+  background-color: #062451;
+}
+
+.delete-btn:hover {
+  background-color: rgb(242, 15, 15);
+}
+
+.admin-orders-list::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .admin-orders {
+    width: 100vw;
+  }
+}
+
+@media(max-width:800px) {
+  .admin-orders {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 20px 50px;
+    margin: 0px !important;
+    overflow: hidden;
+  }
+
+  .admin-orders-header,
+  .admin-orders-item {
+    padding: 15px 0;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 450px) {
+  .admin-orders {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 20px 10px;
+    margin: 0px !important;
+  }
+
+  .header {
+    margin-bottom: 8px;
+    justify-content: center;
+    gap: 8px;
+    align-items: baseline;
+  }
+}
+
+@media (max-width: 350px) {
+  .header {
+    justify-content: left;
+    margin-left: 20px;
+  }
+
+  .admin-orders-item {
+    font-size: 10px;
+  }
+
+  .header h4 {
+    font-size: 14px;
+  }
+
+  .admin-orders-item {
+    padding: 0px !important;
+  }
+
+  .order-id {
+    margin-top: 15px !important;
+  }
+  .action-buttons-order{
+    justify-content: center;
+  }
+}

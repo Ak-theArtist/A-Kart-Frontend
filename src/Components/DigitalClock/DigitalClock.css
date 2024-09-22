@@ -1,0 +1,29 @@
+
+  .digital-clock {
+    position: sticky;
+    top: 75px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    font-weight: bold;
+    text-align: right;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+  #timer{
+    margin-left: 20px;
+    font-size: smaller;
+  }
+
+  
+
+
+  @media (max-width: 830px) {
+    .digital-clock{
+        opacity: 0;
+    }
+    #timer{
+      display: none;
+    }
+}
+    

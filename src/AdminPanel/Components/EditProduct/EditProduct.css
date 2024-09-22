@@ -1,0 +1,30 @@
+.editproduct-thumbnail-img{
+    height: 100px;
+    border-radius: 5px;
+    cursor: pointer;
+    object-fit: cover;
+    width: 85px;
+    object-position: top center;
+}
+.editproduct-thumbnail-img:hover{
+    opacity: 0.7;
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+.images{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.ant-modal-title{
+    text-align: center !important;
+    display: none !important;
+}
+
+.ant-modal-content{
+    padding: 0px !important;
+}
+:where(.css-dev-only-do-not-override-p8b6i).ant-modal .ant-modal-close {
+    top: 3px;
+    inset-inline-end: 4px;
+}

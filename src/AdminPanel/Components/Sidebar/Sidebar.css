@@ -1,0 +1,128 @@
+.sidebar {
+    display: flex;
+    position: fixed;
+    z-index: 200;
+    top: 80px;
+    right: 10px;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 20px;
+    gap: 20px;
+    max-width: 250px;
+    background: rgba(226, 225, 225, 0.095);
+    box-shadow: 2px 2px 9px -4px rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.sidebar-toggle {
+    display: none;
+}
+
+.bgColor-dark {
+    background-color: #08111a;
+}
+
+.bgColor-light {
+    background-color: #dad7d7;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: white;
+    box-shadow: 2px 2px 9px -4px rgba(0, 0, 0, 0.75);
+    height: 50px;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.sidebar-item img {
+    height: 40px;
+}
+
+.cart-img img {
+    height: 30px;
+}
+
+.invert {
+    filter: invert(1);
+}
+
+.sidebar p {
+    margin-bottom: 0px;
+    font-size: small;
+    color: rgba(0, 0, 0, 0.737);
+}
+
+@media (max-width: 1200px) {
+    .sidebar {
+        transform: translateX(100%);
+        right: -10px;
+        top: 90px;
+        width: 250px;
+        background: rgba(72, 71, 71, 0.09);
+        flex-direction: column;
+        box-shadow: 2px 2px 9px -4px rgba(0, 0, 0, 0.75);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .sidebar.open {
+        transform: translateX(-80px);
+        top: 90px;
+    }
+
+    .sidebar-item {
+        gap: 10px;
+    }
+
+    .sidebar-item img {
+        height: 30px;
+    }
+
+    .sidebar p {
+        font-size: 14px;
+    }
+
+    .sidebar-toggle {
+        display: block;
+        position: fixed;
+        top: 90px;
+        right: 10px;
+        z-index: 2;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #fff;
+        overflow: hidden;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 2px 2px 9px -4px rgba(0, 0, 0, 0.75);
+    }
+    .left-arrow{
+        height: 30px;
+    }
+}
+@media (max-width: 767px) {
+    .sidebar-toggle{
+        top: 65px;
+    }
+}
+
+@media (max-width: 350px) {
+    .sidebar {
+        width: 100%;
+        width: 215px;
+    }
+
+    .sidebar-toggle {
+        right: 5px;
+    }
+
+    .sidebar.open {
+        transform: translateX(-55px);
+    }
+}

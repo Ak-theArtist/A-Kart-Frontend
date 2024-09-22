@@ -1,0 +1,37 @@
+.loading-overlay {
+    background-color: white; 
+    z-index: 1000;
+    height: 100vh;
+    animation: fade 2s 2s, move 2s 2.5s;
+  }
+  
+  .loading-content {
+    color: rgb(43, 42, 42); 
+    display: flex;
+    font-size: medium;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    width: 100vw;
+    font-family: Poppins;
+  }
+  @keyframes fade {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes move {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-5vh);
+    }
+  }
+  
