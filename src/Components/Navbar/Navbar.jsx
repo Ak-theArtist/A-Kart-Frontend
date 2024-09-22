@@ -28,6 +28,7 @@ const Navbar = (props) => {
     const user = useContext(userContext);
     const navigate = useNavigate();
 
+    const token = localStorage.getItem('token') || getCookie('token');
     // Logout function
     const handleLogout = () => {
         setIsLoading(true);
@@ -35,11 +36,11 @@ const Navbar = (props) => {
             .then(res => {
                 if (res.data === "Success") {
                     console.log('Logout successful');
-                
+
                     localStorage.removeItem('token');
                     localStorage.removeItem('email');
                     localStorage.removeItem('password');
-                    
+
                     navigate('/login');
                     window.location.reload();
                 }
@@ -51,7 +52,7 @@ const Navbar = (props) => {
                 setIsLoading(false);
             });
     };
-    
+
 
 
     useEffect(() => {
@@ -71,24 +72,24 @@ const Navbar = (props) => {
             const closeButton = document.querySelector('.close-btn');
             const navMenuItems = document.querySelectorAll('.nav-menu li');
             const navLoginCartItems = document.querySelectorAll('.nav-login-cart button, .nav-login-cart a');
-        
+
             const isOffcanvasClicked = offcanvasElement.contains(event.target);
             const isTogglerClicked = toggler.contains(event.target);
             const isCloseButtonClicked = closeButton.contains(event.target);
             const isNavMenuItemClicked = Array.from(navMenuItems).some(item => item.contains(event.target));
             const isNavLoginCartItemClicked = Array.from(navLoginCartItems).some(item => item.contains(event.target));
-        
+
             if (offcanvasElement && !isOffcanvasClicked && !isTogglerClicked) {
                 const bsOffcanvas = Offcanvas.getInstance(offcanvasElement);
                 if (bsOffcanvas) {
                     bsOffcanvas.hide();
                 }
             }
-        
+
             if (isCloseButtonClicked || isNavMenuItemClicked || isNavLoginCartItemClicked) {
                 closeOffcanvas();
             }
-        };        
+        };
 
         document.addEventListener('click', handleClickOutside);
         return () => {
@@ -103,7 +104,7 @@ const Navbar = (props) => {
         if (bsOffcanvas) {
             bsOffcanvas.hide();
         }
-    };  
+    };
     // const closeOffcanvas = () => {
     //     const offcanvasElement = document.getElementById('offcanvasSidebar');
     //     const bsOffcanvas = Offcanvas.getInstance(offcanvasElement);
@@ -115,11 +116,11 @@ const Navbar = (props) => {
     // Fetch logged-in user data
     useEffect(() => {
         axios.get(`https://a-kart-backend.onrender.com/auth/me`, { withCredentials: true })
-          .then(response => {
-            console.log(response.data);
-          })
-          .catch(err => console.log(err));
-      }, []);         
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(err => console.log(err));
+    }, []);
 
     return (
         <>
@@ -179,11 +180,11 @@ const Navbar = (props) => {
                                     </label>
                                 </div>
                                 {
-                                    userData ?
+                                    token ? (
                                         <div>
                                             <button className="btn btn-outline-light nav-logout-btn" type="button" onClick={handleLogout}>Logout</button>
                                         </div>
-                                        :
+                                    ) : (
                                         <div>
                                             <Link to="/login" className='animate-right'>
                                                 <button className="btn nav-login-btn" type="button" data-bs-toggle="tooltip"
@@ -194,6 +195,7 @@ const Navbar = (props) => {
                                                 </button>
                                             </Link>
                                         </div>
+                                    )
                                 }
                                 {(!userData || userData.role !== 'admin') && (
                                     <>
