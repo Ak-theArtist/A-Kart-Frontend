@@ -100,7 +100,7 @@ function LoginSignup() {
     }
 
     try {
-      await axios.post(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/register`, { name, email, password });
+      await axios.post('https://a-kart-backend.onrender.com/auth/register', { name, email, password });
       localStorage.setItem('email', email);
       localStorage.setItem('password', password);
       setAlertMessage('Registration successful! Redirecting to login...');
@@ -126,7 +126,7 @@ function LoginSignup() {
     setIsLoading(true);
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/login`, { email, password });
+      const res = await axios.post('https://a-kart-backend.onrender.com/auth/login', { email, password });
       console.log('Response from server:', res.data);
       const tempToken = localStorage.getItem("cartItems");
       if (tempToken) {
@@ -165,7 +165,7 @@ function LoginSignup() {
   const handleRequestOtp = async () => {
     try {
       console.log('Requesting OTP for email:', email);
-      const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/forgotpassword`, { email });
+      const response = await axios.post('https://a-kart-backend.onrender.com/auth/forgotpassword', { email });
       console.log('OTP request response:', response.data);
       setForgotPasswordStep(2);
     } catch (err) {
@@ -180,7 +180,7 @@ function LoginSignup() {
     try {
       const payload = { email, otp };
       console.log('Verifying OTP with data:', payload);
-      const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/verifyotp`, payload);
+      const response = await axios.post('https://a-kart-backend.onrender.com/auth/verifyotp', payload);
       console.log('OTP verified successfully:', response.data);
       setForgotPasswordStep(3);
     } catch (err) {
@@ -202,7 +202,7 @@ function LoginSignup() {
     }
     try {
       console.log('Updating password with data:', { email, otp, newPassword });
-      await axios.post(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/updatepassword`, { email, otp, newPassword });
+      await axios.post('https://a-kart-backend.onrender.com/auth/updatepassword', { email, otp, newPassword });
       alert('Password updated successfully');
       setForgotPasswordStep(1);
       setState("Login");

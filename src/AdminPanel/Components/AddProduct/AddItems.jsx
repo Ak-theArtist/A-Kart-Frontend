@@ -30,7 +30,7 @@ const AddProduct = () => {
     formData.append('image', productImage3);
     formData.append('image', productImage4);
 
-    axios.post(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/product/addproduct`, formData)
+    axios.post('https://a-kart-backend.onrender.com/product/addproduct', formData)
       .then(res => {
         console.log(res);
         window.location.reload();

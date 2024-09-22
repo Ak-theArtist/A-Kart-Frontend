@@ -9,7 +9,7 @@ const AdminOrders = () => {
     const [sortOption, setSortOption] = useState('');
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/order/allorders`)
+        axios.get(`https://a-kart-backend.onrender.com/order/allorders`)
             .then(response => {
                 setOrders(response.data);
                 setIsLoading(false);
@@ -21,7 +21,7 @@ const AdminOrders = () => {
     }, []);
 
     const handleStatusChange = (orderId, newStatus) => {
-        axios.put(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/order/updateorder/${orderId}`, { status: newStatus })
+        axios.put(`https://a-kart-backend.onrender.com/order/updateorder/${orderId}`, { status: newStatus })
             .then(response => {
                 setOrders(orders.map(order => order._id === response.data.order._id ? response.data.order : order));
             })

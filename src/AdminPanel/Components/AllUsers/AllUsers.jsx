@@ -8,13 +8,13 @@ const AllUsers = () => {
     const [adminInfo, setAdminInfo] = useState(null);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/getAllusers`)
+        axios.get(`https://a-kart-backend.onrender.com/auth/getAllusers`)
             .then(response => {
                 setUsers(response.data);
             })
             .catch(err => console.error(err));
 
-        axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/me`)
+            axios.get(`https://a-kart-backend.onrender.com/auth/me`, { withCredentials: true })
             .then(response => {
                 setAdminInfo(response.data);
             })
@@ -23,7 +23,7 @@ const AllUsers = () => {
 
     const handleMakeAdmin = async (userId) => {
         try {
-            const response = await axios.put(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/makeAdmin/${userId}`);
+            const response = await axios.put(`https://a-kart-backend.onrender.com/auth/makeAdmin/${userId}`);
             setUsers(prevUsers => prevUsers.map(user =>
                 user._id === userId ? { ...user, role: 'admin' } : user
             ));
@@ -36,7 +36,7 @@ const AllUsers = () => {
 
     const handleRevertAdmin = async (userId) => {
         try {
-            const response = await axios.put(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/revertAdmin/${userId}`);
+            const response = await axios.put(`https://a-kart-backend.onrender.com/auth/revertAdmin/${userId}`);
             setUsers(prevUsers => prevUsers.map(user =>
                 user._id === userId ? { ...user, role: 'user' } : user
             ));
@@ -48,7 +48,7 @@ const AllUsers = () => {
     };
 
     const handleDeleteUser = (userId) => {
-        axios.delete(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/deleteUser/${userId}`)
+        axios.delete(`https://a-kart-backend.onrender.com/auth/deleteUser/${userId}`)
             .then(response => {
                 setUsers(prevUsers => prevUsers.filter(user => user._id !== userId));
                 alert('User deleted successfully');

@@ -7,7 +7,7 @@ function NewCollections(props) {
   const [new_collection, setNew_collection] = useState([]);
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/newcollections`)
+    axios.get(`https://a-kart-backend.onrender.com/auth/newcollections`)
       .then((response) => {
         setNew_collection(response.data);
       })

@@ -11,7 +11,7 @@ const ShopContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(false); 
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/product/allproducts`)
+    axios.get(`https://a-kart-backend.onrender.com/product/allproducts`)
       .then((response) => {
         setAllProduct(response.data);
       })
@@ -21,14 +21,14 @@ const ShopContextProvider = (props) => {
 
     const fetchUserIdAndCart = async () => {
       try {
-        const userResponse = await axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/me`, {
+        const userResponse = await axios.get(`https://a-kart-backend.onrender.com/auth/me`, {
           withCredentials: true,
         });
         const user = userResponse.data;
         setUserId(user._id);
         setUserRole(user.role); 
 
-        const cartResponse = await axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/cart/${user._id}`, {
+        const cartResponse = await axios.get(`https://a-kart-backend.onrender.com/auth/cart/${user._id}`, {
           withCredentials: true,
         });
         setCartItems(cartResponse.data.cart);
@@ -58,7 +58,7 @@ const ShopContextProvider = (props) => {
       }
 
       const response = await axios.post(
-        `${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/addtocart/${userId}`,
+        `https://a-kart-backend.onrender.com/auth/addtocart/${userId}`,
         { productId },
         {
           headers: {
@@ -85,7 +85,7 @@ const ShopContextProvider = (props) => {
       }
 
       const response = await axios.post(
-        `${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/removefromcart/${userId}`,
+        `https://a-kart-backend.onrender.com/auth/removefromcart/${userId}`,
         { productId },
         {
           headers: {

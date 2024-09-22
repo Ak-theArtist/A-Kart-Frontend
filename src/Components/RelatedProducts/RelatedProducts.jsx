@@ -9,7 +9,7 @@ const RelatedProducts = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/product/allproducts`)
+    axios.get(`https://a-kart-backend.onrender.com/product/allproducts`)
       .then((response) => {
         const shuffledProducts = shuffleArray(response.data);
         setAll_collection(shuffledProducts);

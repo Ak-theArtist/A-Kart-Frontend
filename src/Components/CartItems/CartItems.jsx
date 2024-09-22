@@ -29,7 +29,7 @@ const CartItems = () => {
                     console.error('User ID not available');
                     return;
                 }
-                const cartUrl = `${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/cart/${userId}`;
+                const cartUrl = `https://a-kart-backend.onrender.com/auth/cart/${userId}`;
                 const cartResponse = await axios.get(cartUrl, { withCredentials: true });
                 const cart = cartResponse.data.cart;
                 if (cart) {
@@ -56,7 +56,7 @@ const CartItems = () => {
                     console.error('User ID not available');
                     return;
                 }
-                const userResponse = await axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/me`, { withCredentials: true });
+                const userResponse = await axios.get(`https://a-kart-backend.onrender.com/auth/me`, { withCredentials: true });
                 const user = userResponse.data;
                 setAddresses(user.address || []);
                 setPincodes(user.pincode || []);
@@ -88,7 +88,7 @@ const CartItems = () => {
                     console.error('User ID not available');
                     return;
                 }
-                const addressUrl = `${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/addresses/${userId}`;
+                const addressUrl = `https://a-kart-backend.onrender.com/auth/addresses/${userId}`;
                 const addressResponse = await axios.get(addressUrl, { withCredentials: true });
                 setAddresses(addressResponse.data.addresses || []);
             } catch (error) {
@@ -136,7 +136,7 @@ const CartItems = () => {
             // Delay the order placement by 3 seconds
             setTimeout(async () => {
                 // Place the order
-                await axios.post(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/order/createorder`, {
+                await axios.post(`https://a-kart-backend.onrender.com/order/createorder`, {
                     userId,
                     items,
                     totalAmount,
@@ -146,7 +146,7 @@ const CartItems = () => {
                 });
     
                 // Clear the cart in the database
-                await axios.post(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/removefromcart/${userId}`, { withCredentials: true });
+                await axios.post(`https://a-kart-backend.onrender.com/auth/removefromcart/${userId}`, { withCredentials: true });
     
                 // Clear the cart in the frontend state
                 setCartItems([]);

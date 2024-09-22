@@ -20,7 +20,7 @@ const ProductDisplay = ({ product }) => {
   };
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/newcollections`)
+    axios.get(`https://a-kart-backend.onrender.com/auth/newcollections`)
       .then((response) => {
         setNewCollection(response.data);
       })

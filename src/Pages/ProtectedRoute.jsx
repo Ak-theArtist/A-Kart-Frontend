@@ -11,7 +11,7 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/me`, { withCredentials: true });
+                const response = await axios.get('https://a-kart-backend.onrender.com/auth/me', { withCredentials: true });
                 setUser(response.data);
             } catch (err) {
                 console.log(err);

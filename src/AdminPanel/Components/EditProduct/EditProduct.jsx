@@ -18,7 +18,7 @@ const EditProduct = ({ productId, onClose }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:4000/product/${productId}`);
+        const res = await axios.get(`https://a-kart-backend.onrender.com/product/${productId}`);
         if (res.data.success) {
           const productData = res.data.product;
           setProductName(productData.name);
@@ -45,7 +45,7 @@ const EditProduct = ({ productId, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:4000/product/editproduct/${productId}`, {
+    axios.put(`https://a-kart-backend.onrender.com/product/editproduct/${productId}`, {
       name: productName,
       category,
       old_price,
@@ -66,7 +66,7 @@ const EditProduct = ({ productId, onClose }) => {
     formData.append('image', file);
     
     try {
-      const res = await axios.put(`http://localhost:4000/product/updateimage${imageIndex}/${productId}`, formData);
+      const res = await axios.put(`https://a-kart-backend.onrender.com/product/updateimage${imageIndex}/${productId}`, formData);
       console.log(res);
       if (imageIndex === 1) setProductImage1(URL.createObjectURL(file));
       if (imageIndex === 2) setProductImage2(URL.createObjectURL(file));

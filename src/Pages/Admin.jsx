@@ -8,7 +8,7 @@ const Admin = () => {
   const [adminInfo, setAdminInfo] = useState(null);
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/me`)
+    axios.get('https://a-kart-backend.onrender.com/auth/me', { withCredentials: true })
       .then(response => {
         setAdminInfo(response.data);
         console.log(response.data);

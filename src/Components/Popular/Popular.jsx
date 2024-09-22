@@ -12,13 +12,13 @@ function Popular(props) {
     const [popularProductsWomen, setPopularProductsWomen] = useState([]);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/popularinmen`)
+        axios.get(`https://a-kart-backend.onrender.com/auth/popularinmen`)
             .then(res => {
                 setPopularProductsMen(res.data);
             })
     }, []);
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/popularinwomen`)
+        axios.get(`https://a-kart-backend.onrender.com/auth/popularinwomen`)
             .then(res => {
                 setPopularProductsWomen(res.data);
             })

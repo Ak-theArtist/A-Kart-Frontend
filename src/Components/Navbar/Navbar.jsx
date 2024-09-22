@@ -31,7 +31,7 @@ const Navbar = (props) => {
     // Logout function
     const handleLogout = () => {
         setIsLoading(true);
-        axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/logout`, { withCredentials: true })
+        axios.get(`https://a-kart-backend.onrender.com/auth/logout`, { withCredentials: true })
             .then(res => {
                 if (res.data === "Success") {
                     console.log('Logout successful');
@@ -115,7 +115,7 @@ const Navbar = (props) => {
 
     // Fetch logged-in user data
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/me`, { withCredentials: true })
+        axios.get(`https://a-kart-backend.onrender.com/auth/me`, { withCredentials: true })
           .then(response => {
             setAdminInfo(response.data);
             setUser(response.data); // Update this line to set the user context

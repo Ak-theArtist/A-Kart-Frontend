@@ -18,7 +18,7 @@ const ListProduct = () => {
 
   const fetchInfo = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/product/allproducts`);
+      const response = await axios.get(`https://a-kart-backend.onrender.com/product/allproducts`);
       setAllProducts(response.data);
     } catch (error) {
       console.error('Error fetching the products', error);
@@ -31,7 +31,7 @@ const ListProduct = () => {
 
   const removeProduct = async (id) => {
     try {
-      await axios.post(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/product/removeproduct`, { id }, {
+      await axios.post(`https://a-kart-backend.onrender.com/product/removeproduct`, { id }, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',

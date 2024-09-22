@@ -51,7 +51,7 @@ const UserProfile = (props) => {
     useEffect(() => {
         if (userId) {
             setIsLoading(true);
-            axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/me`, { withCredentials: true })
+            axios.get(`https://a-kart-backend.onrender.com/auth/me`, { withCredentials: true })
                 .then(res => {
                     setUserDetails(prev => ({
                         ...res.data,
@@ -80,7 +80,7 @@ const UserProfile = (props) => {
 
     // Fetch logged-in user data
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/me`, {
+        axios.get(`https://a-kart-backend.onrender.com/auth/me`, {
             withCredentials: true
         })
             .then(res => {
@@ -92,7 +92,7 @@ const UserProfile = (props) => {
     useEffect(() => {
         if (userId && userDetails.orders.length > 0) {
             setIsLoading(true);
-            axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/order/ordersforuser`, {
+            axios.get(`https://a-kart-backend.onrender.com/order/ordersforuser`, {
                 withCredentials: true,
                 params: { userId }
             })
@@ -180,7 +180,7 @@ const UserProfile = (props) => {
         const { pincode, ...updateData } = formData;
         try {
             const response = await axios.put(
-                `${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/updateProfile`,
+                `https://a-kart-backend.onrender.com/auth/updateProfile`,
                 { ...updateData, userId },
                 { withCredentials: true }
             );
@@ -287,7 +287,7 @@ const UserProfile = (props) => {
 
     const handleSaveChanges = async () => {
         try {
-            await axios.put(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/updateAddress`, {
+            await axios.put(`https://a-kart-backend.onrender.com/auth/updateAddress`, {
                 userId,
                 address: addresses,
                 pincode: pincodes
@@ -322,7 +322,7 @@ const UserProfile = (props) => {
     const handleDeleteAddress = async (index) => {
         try {
             const addressToDelete = addresses[index];
-            await axios.delete(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/deleteAddress`, {
+            await axios.delete(`https://a-kart-backend.onrender.com/auth/deleteAddress`, {
                 data: { userId, address: addressToDelete },
                 withCredentials: true
             });
@@ -337,7 +337,7 @@ const UserProfile = (props) => {
     const handleDeletePincode = async (index) => {
         try {
             const pincodeToDelete = pincodes[index];
-            await axios.delete(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/deletePincode`, {
+            await axios.delete(`https://a-kart-backend.onrender.com/auth/deletePincode`, {
                 data: { userId, pincode: pincodeToDelete },
                 withCredentials: true
             });
