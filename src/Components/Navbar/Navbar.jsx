@@ -40,8 +40,6 @@ const Navbar = (props) => {
                     localStorage.removeItem('token');
                     localStorage.removeItem('email');
                     localStorage.removeItem('password');
-
-                    navigate('/login');
                     window.location.reload();
                 }
             })
@@ -52,8 +50,6 @@ const Navbar = (props) => {
                 setIsLoading(false);
             });
     };
-
-
 
     useEffect(() => {
         setBtnText(props.mode === 'light' ? "Dark Mode" : "Light Mode");
