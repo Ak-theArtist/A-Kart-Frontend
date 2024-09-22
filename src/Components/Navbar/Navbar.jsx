@@ -39,6 +39,7 @@ const Navbar = (props) => {
                     localStorage.removeItem('token');
                     localStorage.removeItem('email');
                     localStorage.removeItem('password');
+                    setUser(null);
                     
                     navigate('/login');
                     window.location.reload();
@@ -114,16 +115,14 @@ const Navbar = (props) => {
 
     // Fetch logged-in user data
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/me`, {
-            withCredentials: true
-        })
-        .then(res => {
-            setUserData(res.data);
-        })
-        .catch(err => {
-            console.error('Error fetching user data:', err.response.data);
-        });
-    }, []);    
+        axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/auth/me`, { withCredentials: true })
+          .then(response => {
+            setAdminInfo(response.data);
+            setUser(response.data); // Update this line to set the user context
+            console.log(response.data);
+          })
+          .catch(err => console.log(err));
+      }, []);         
 
     return (
         <>

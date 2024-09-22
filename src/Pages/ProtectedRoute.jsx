@@ -5,6 +5,7 @@ import ErrorPage from './ErrorPage';
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -15,16 +16,21 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
             } catch (err) {
                 console.log(err);
                 navigate('/error');
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchUserData();
     }, [navigate]);
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
     if (!user || (user.role !== 'admin' && user.role !== 'superadmin')) {
         return <ErrorPage />;
     }
-
 
     return <Component {...rest} user={user} />;
 };
