@@ -39,7 +39,6 @@ const Navbar = (props) => {
                     localStorage.removeItem('token');
                     localStorage.removeItem('email');
                     localStorage.removeItem('password');
-                    setUser(null);
                     
                     navigate('/login');
                     window.location.reload();
@@ -117,7 +116,6 @@ const Navbar = (props) => {
     useEffect(() => {
         axios.get(`https://a-kart-backend.onrender.com/auth/me`, { withCredentials: true })
           .then(response => {
-            setUser(response.data); // Update this line to set the user context
             console.log(response.data);
           })
           .catch(err => console.log(err));
