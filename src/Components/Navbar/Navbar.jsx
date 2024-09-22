@@ -117,7 +117,6 @@ const Navbar = (props) => {
     useEffect(() => {
         axios.get(`https://a-kart-backend.onrender.com/auth/me`, { withCredentials: true })
           .then(response => {
-            setAdminInfo(response.data);
             setUser(response.data); // Update this line to set the user context
             console.log(response.data);
           })
