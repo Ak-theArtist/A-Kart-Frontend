@@ -28,7 +28,7 @@ const Navbar = (props) => {
     const user = useContext(userContext);
     const navigate = useNavigate();
 
-    const token = localStorage.getItem('token') || getCookie('token');
+    const token = localStorage.getItem('token');
     // Logout function
     const handleLogout = () => {
         setIsLoading(true);
