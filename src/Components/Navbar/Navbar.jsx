@@ -29,6 +29,13 @@ const Navbar = (props) => {
     const navigate = useNavigate();
 
     const token = localStorage.getItem('token');
+
+    useEffect(() => {
+        if (token) {
+            const decodedToken = jwtDecode(token);
+            setUserData(decodedToken);
+        }
+    }, [token]);
     // Logout function
     const handleLogout = () => {
         setIsLoading(true);
@@ -50,7 +57,7 @@ const Navbar = (props) => {
                 setIsLoading(false);
             });
     };
-    
+
 
     useEffect(() => {
         setBtnText(props.mode === 'light' ? "Dark Mode" : "Light Mode");
@@ -110,34 +117,32 @@ const Navbar = (props) => {
                     'Authorization': `Bearer ${token}`
                 }
             })
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(err => {
-                console.error('Error fetching user:', err); 
-            });
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(err => {
+                    console.error('Error fetching user:', err);
+                });
         } else {
             console.error('No token found');
         }
     }, []);
-    
+
 
     return (
         <>
-            <ProgressBar />
             <nav className={`fixed navbar container-fluid navbar-expand-lg navbar-${props.mode} bgColor-${props.mode}`}>
                 <div className={`container-fluid navbar-${props.mode} bgColor-${props.mode}`}>
                     <Link to="/">
                         <img className='animate-up logo-main' src={logo} alt="Logo" />
                     </Link>
                     <Link className="navbar-brand animate-up" to="/">A-Kart</Link>
-
                     <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className={`offcanvas offcanvas-end text-${props.mode === 'dark' ? 'light' : 'dark'} bgColor-${props.mode === 'light' ? '#ebeaea' : 'dark'}`} tabIndex="-1" id="offcanvasSidebar" data-bs-scroll="true" aria-labelledby="offcanvasSidebarLabel" >
-                        <div className={`offcanvas-header text-${props.mode === 'dark' ? 'light' : 'dark'} bgColor-${props.mode === 'light' ? '#ebeaea' : 'dark'}`} >
-                            <h5 className={`offcanvas-title`} id="offcanvasSidebarLabel">A-Kart</h5>
+                    <div className={`offcanvas offcanvas-end text-${props.mode === 'dark' ? 'light' : 'dark'} bgColor-${props.mode === 'light' ? '#ebeaea' : 'dark'}`} tabIndex="-1" id="offcanvasSidebar" data-bs-scroll="true" aria-labelledby="offcanvasSidebarLabel">
+                        <div className={`offcanvas-header text-${props.mode === 'dark' ? 'light' : 'dark'} bgColor-${props.mode === 'light' ? '#ebeaea' : 'dark'}`}>
+                            <h5 className="offcanvas-title" id="offcanvasSidebarLabel">A-Kart</h5>
                             <button type="button" className={`btn-close ${props.mode === 'dark' ? 'invert' : ''} close-btn`} data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div className={`offcanvas-body text-${props.mode === 'dark' ? 'light' : 'dark'} bgColor-${props.mode === 'light' ? '#ebeaea' : 'dark'}`}>
@@ -179,50 +184,34 @@ const Navbar = (props) => {
                                         {btnText}
                                     </label>
                                 </div>
-                                {
-                                    token ? (
-                                        <div>
-                                            <button className="btn btn-outline-light nav-logout-btn" type="button" onClick={handleLogout}>Logout</button>
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <Link to="/login" className='animate-right'>
-                                                <button className="btn nav-login-btn" type="button" data-bs-toggle="tooltip"
-                                                    data-bs-placement="top"
-                                                    title="Click to log in"
-                                                    data-bs-custom-class="custom-tooltip">
-                                                    Login
-                                                </button>
-                                            </Link>
-                                        </div>
-                                    )
-                                }
+                                {token ? (
+                                    <div>
+                                        <button className="btn btn-outline-light nav-logout-btn" type="button" onClick={handleLogout}>Logout</button>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <Link to="/login" className='animate-right'>
+                                            <button className="btn nav-login-btn" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to log in" data-bs-custom-class="custom-tooltip">
+                                                Login
+                                            </button>
+                                        </Link>
+                                    </div>
+                                )}
                                 {(!userData || userData.role !== 'admin') && (
                                     <>
                                         <Link to="/cart">
-                                            <img
-                                                className={`rotate cart-icon ${props.mode === 'dark' ? 'invert' : ''}`}
-                                                src={cart_icon}
-                                                alt="Cart Icon"
-                                            />
+                                            <img className={`rotate cart-icon ${props.mode === 'dark' ? 'invert' : ''}`} src={cart_icon} alt="Cart Icon" />
                                         </Link>
                                         <div className="nav-cart-count d-flex justify-content-center">{getTotalCartItems()}</div>
                                     </>
                                 )}
-                                {
-                                    (!userData || userData.role !== 'admin') && (
-                                        <>
-                                            <div className='profile-icon'>
-                                                <Link to={`/profile`}>
-                                                    <img
-                                                        className={`${props.mode === 'dark' ? 'invert' : ''}`}
-                                                        src={profile_icon}
-                                                        alt="Profile Icon"
-                                                    />
-                                                </Link>
-                                            </div>
-                                        </>
-                                    )}
+                                {(!userData || userData.role !== 'admin') && (
+                                    <div className='profile-icon'>
+                                        <Link to={`/profile`}>
+                                            <img className={`${props.mode === 'dark' ? 'invert' : ''}`} src={profile_icon} alt="Profile Icon" />
+                                        </Link>
+                                    </div>
+                                )}
                             </form>
                         </div>
                     </div>
