@@ -13,6 +13,10 @@
   object-fit: cover;
   cursor: pointer;
 }
+.product-added-msg{
+  text-align: center;
+  margin-top: 7px;
+}
 
 .addproduct {
   /* width: 50vw; */
