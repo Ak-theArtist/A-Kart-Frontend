@@ -21,6 +21,7 @@ function LoginSignup() {
   axios.defaults.withCredentials = true;
 
   const { setIsLoading } = useContext(userContext);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     document.title = 'A-Kart - Login';
@@ -131,11 +132,11 @@ function LoginSignup() {
       if (tempCart) {
         localStorage.removeItem("cartItems");
       }
-      if (res.data.token) {
-        localStorage.setItem('token', res.data.token);
+      if (token) {
+        localStorage.setItem('token', token);
 
         try {
-          const decoded = jwtDecode(res.data.token);
+          const decoded = jwtDecode(token);
           console.log('Decoded token:', decoded);
           if (decoded.role === 'admin') {
             navigate('/admin');
