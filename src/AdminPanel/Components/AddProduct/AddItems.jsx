@@ -100,7 +100,7 @@ const AddProduct = () => {
           <div className="add-button">
             <button onClick={handleSubmit} className='addproduct-btn'>ADD PRODUCT</button>
           </div>
-          {message && <div className="confirmation-message">{message}</div>}
+          {message && <div className="confirmation-message text-center mt-3">{message}</div>}
         </div>
       </div>
     </>

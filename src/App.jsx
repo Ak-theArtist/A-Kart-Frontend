@@ -28,6 +28,7 @@ import { Navigate } from 'react-router-dom';
 export const userContext = createContext();
 
 function App() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [adminInfo, setAdminInfo] = useState(null);
@@ -43,6 +44,17 @@ function App() {
       document.body.style.overflow = 'auto';
     }
   }, [isLoading]);
+
+  //for unwanted refresh
+  useEffect(() => {
+    const handleRefresh = () => {
+      navigate('/'); // Navigate to home page
+    };
+    window.addEventListener('beforeunload', handleRefresh);
+    return () => {
+      window.removeEventListener('beforeunload', handleRefresh);
+    };
+  }, [navigate]);
 
   useEffect(() => {
     axios.get('https://a-kart-backend.onrender.com/auth/me', {
