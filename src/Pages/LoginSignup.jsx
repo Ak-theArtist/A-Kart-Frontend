@@ -128,6 +128,7 @@ function LoginSignup() {
     try {
       const res = await axios.post('https://a-kart-backend.onrender.com/auth/login', { email, password });
       console.log('Response from server:', res.data);
+
       const tempToken = localStorage.getItem("cartItems");
       if (tempToken) {
         localStorage.removeItem("cartItems");
@@ -135,8 +136,11 @@ function LoginSignup() {
 
       if (res.data.token) {
         localStorage.setItem('token', res.data.token);
+
         try {
           const decoded = jwtDecode(res.data.token);
+          console.log('Decoded token:', decoded);
+
           if (decoded.role === 'admin') {
             navigate('/admin');
           } else {
@@ -149,18 +153,20 @@ function LoginSignup() {
         }
       } else {
         alert(res.data.error || "Invalid Credentials");
-        console.log(res.data);
       }
     } catch (err) {
       setIsLoading(false);
       if (err.response && err.response.status === 401) {
         alert("Invalid email or password.");
       } else {
-        console.error(err);
+        console.error('An error occurred:', err);
         alert("An error occurred. Please try again.");
       }
+    } finally {
+      setIsLoading(false);
     }
   };
+
 
   const handleRequestOtp = async () => {
     try {
