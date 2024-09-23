@@ -11,9 +11,9 @@ const Admin = () => {
   useEffect(() => {
     axios.get('https://a-kart-backend.onrender.com/auth/me', {
       headers: {
-          'Authorization': `Bearer ${token}` 
+        'Authorization': `Bearer ${token}`
       }
-  })
+    })
       .then(response => {
         setAdminInfo(response.data);
         console.log(response.data);
