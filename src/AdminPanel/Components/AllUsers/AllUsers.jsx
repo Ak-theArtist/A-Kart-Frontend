@@ -9,19 +9,37 @@ const AllUsers = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        axios.get(`https://a-kart-backend.onrender.com/auth/getAllusers`)
+        if (token) {
+            axios.get(`https://a-kart-backend.onrender.com/auth/getAllusers`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
             .then(response => {
                 setUsers(response.data);
             })
-            .catch(err => console.error(err));           
-            axios.get(`https://a-kart-backend.onrender.com/auth/me`, { headers: {
-                'Authorization': `Bearer ${token}` 
-            } })
+            .catch(err => {
+                if (err.response && err.response.status === 403) {
+                    alert("You do not have permission to access this resource.");
+                } else {
+                    console.error(err);
+                }
+            });            
+            axios.get(`https://a-kart-backend.onrender.com/auth/me`, { 
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
             .then(response => {
                 setAdminInfo(response.data);
             })
-            .catch(err => console.error(err));
-    }, []);
+            .catch(err => {
+                if (err.response && err.response.status === 403) {
+                    alert("You do not have permission to access this resource.");
+                } else {
+                    console.error(err);
+                }
+            });
+        } else {
+            console.error("No token found");
+        }
+    }, []);    
 
     const handleMakeAdmin = async (userId) => {
         try {
