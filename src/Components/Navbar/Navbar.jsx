@@ -8,6 +8,7 @@ import profile_icon from '../../Components/Assets/user.png'
 import admin_logo from '../../AdminPanel/Components/assets/goku.gif';
 import { Link, useNavigate } from 'react-router-dom';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import { jwtDecode } from 'jwt-decode';
 import { ShopContext } from '../../Context/ShopContext';
 import { Tooltip, Offcanvas } from 'bootstrap';
 import useIntersectionObserver from '../Hooks/Hooks';
@@ -131,6 +132,7 @@ const Navbar = (props) => {
 
     return (
         <>
+            <ProgressBar />
             <nav className={`fixed navbar container-fluid navbar-expand-lg navbar-${props.mode} bgColor-${props.mode}`}>
                 <div className={`container-fluid navbar-${props.mode} bgColor-${props.mode}`}>
                     <Link to="/">
