@@ -111,7 +111,7 @@ function App() {
 
 function ConditionalFooter() {
   const location = useLocation();
-  return location.pathname !== '/admin' ? <Footer /> : <></>;
+  return location.pathname !== '/admin' ? <Footer /> : null;
 }
 
 export default App;
