@@ -51,6 +51,7 @@ const CartItems = () => {
     // Fetch user details
     useEffect(() => {
         const fetchUserDetails = async () => {
+            const token = localStorage.getItem('token');
             try {
                 if (!userId) {
                     console.error('User ID not available');

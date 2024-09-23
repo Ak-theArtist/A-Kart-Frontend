@@ -8,6 +8,7 @@ const AllUsers = () => {
     const [adminInfo, setAdminInfo] = useState(null);
 
     useEffect(() => {
+        const token = localStorage.getItem('token');
         axios.get(`https://a-kart-backend.onrender.com/auth/getAllusers`)
             .then(response => {
                 setUsers(response.data);

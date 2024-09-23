@@ -31,6 +31,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [adminInfo, setAdminInfo] = useState(null);
   const [mode, setMode] = useState('light');
+  const token = localStorage.getItem('token');
 
   axios.defaults.withCredentials = true;
 

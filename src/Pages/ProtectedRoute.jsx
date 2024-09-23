@@ -7,6 +7,7 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         const fetchUserData = async () => {

@@ -47,6 +47,7 @@ const UserProfile = (props) => {
 
     const { userId, cartItems, allProduct, setIsLoading } = useContext(ShopContext);
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         if (userId) {

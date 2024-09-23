@@ -9,6 +9,7 @@ const ShopContextProvider = (props) => {
   const [userId, setUserId] = useState(null);
   const [userRole, setUserRole] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     axios.get(`https://a-kart-backend.onrender.com/product/allproducts`)

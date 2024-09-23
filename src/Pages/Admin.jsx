@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const Admin = () => {
   const [adminInfo, setAdminInfo] = useState(null);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     axios.get('https://a-kart-backend.onrender.com/auth/me', {
