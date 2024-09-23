@@ -73,7 +73,6 @@ function LoginSignup() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     if (!name || !email || !password || !rePassword) {
       alert("Please fill in all fields.");
