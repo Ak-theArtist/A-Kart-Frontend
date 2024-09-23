@@ -73,17 +73,9 @@ const AdminOrders = () => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="admin-orders-header">
-                    <p className="order-id">Order ID</p>
-                    <p>Order Date</p>
-                    <p>Order Time</p>
-                    <p>Total Amount</p>
-                    <p>Status</p>
-                    <p>Quantity</p>
-                </div> */}
                 <div className="admin-orders-list">
                     <hr />
-                    {isLoading ? <p>Loading...</p> : sortedOrders.map(order => (
+                    {isLoading ? <p className='text-center'>Loading...</p> : sortedOrders.map(order => (
                         <React.Fragment key={order._id}>
                             <div className="admin-orders-item">
                                 <p className="order-id">Order ID: {order._id}</p>

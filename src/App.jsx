@@ -23,6 +23,7 @@ import EditProduct from './AdminPanel/Components/EditProduct/EditProduct';
 import UserProfile from './Components/UserProfile/UserProfile';
 import AdminOrders from './AdminPanel/Components/AdminOrders/AdminOrders';
 import NoRoute from './Pages/NoRoute';
+import { Navigate } from 'react-router-dom';
 
 export const userContext = createContext();
 
@@ -98,7 +99,10 @@ function App() {
               <Route path="/error" element={<ErrorPage />} />
               <Route path="/product/:productId" element={<Product />} />
               <Route exact path="/cart" element={<Cart />} />
-              <Route exact path="/login" element={<LoginSignup />} />
+              <Route
+                path="/login"
+                element={token ? <Navigate to="/" replace /> : <LoginSignup />}
+              />
               <Route path="*" element={<NoRoute />} />
             </Routes>
             <ConditionalFooter />
