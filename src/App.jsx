@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Shop from './Pages/Shop';
 import ShopCategory from './Pages/ShopCategory';
 import Product from './Pages/Product';
@@ -23,7 +23,6 @@ import EditProduct from './AdminPanel/Components/EditProduct/EditProduct';
 import UserProfile from './Components/UserProfile/UserProfile';
 import AdminOrders from './AdminPanel/Components/AdminOrders/AdminOrders';
 import NoRoute from './Pages/NoRoute';
-import { Navigate } from 'react-router-dom';
 
 export const userContext = createContext();
 
@@ -37,49 +36,25 @@ function App() {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    if (isLoading) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    document.body.style.overflow = isLoading ? 'hidden' : 'auto';
   }, [isLoading]);
 
-  // Prevent unwanted refresh
   useEffect(() => {
-    const handleRefresh = (event) => {
-      window.location.href = '/'; 
-    };
-
-    window.addEventListener('beforeunload', handleRefresh);
-    return () => {
-      window.removeEventListener('beforeunload', handleRefresh);
-    };
-  }, []);
-  const location = useLocation();
-  useEffect(() => {
-    if (location.pathname !== '/') {
-      const handleRefresh = () => {
-        window.location.href = '/';
-      };
-      window.addEventListener('beforeunload', handleRefresh);
-      return () => {
-        window.removeEventListener('beforeunload', handleRefresh);
-      };
-    }
-  }, [location.pathname]);
-
-  useEffect(() => {
-    axios.get('https://a-kart-backend.onrender.com/auth/me', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then(response => {
+    const fetchAdminInfo = async () => {
+      try {
+        const response = await axios.get('https://a-kart-backend.onrender.com/auth/me', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         setAdminInfo(response.data);
-        console.log(response.data);
-      })
-      .catch(err => console.log(err));
-  }, []);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchAdminInfo();
+  }, [token]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -123,10 +98,7 @@ function App() {
               <Route path="/error" element={<ErrorPage />} />
               <Route path="/product/:productId" element={<Product />} />
               <Route exact path="/cart" element={<Cart />} />
-              <Route
-                path="/login"
-                element={token ? <Navigate to="/" replace /> : <LoginSignup />}
-              />
+              <Route path="/login" element={token ? <Navigate to="/" replace /> : <LoginSignup />} />
               <Route path="*" element={<NoRoute />} />
             </Routes>
             <ConditionalFooter />
