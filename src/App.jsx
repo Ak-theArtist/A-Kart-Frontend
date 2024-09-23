@@ -55,6 +55,18 @@ function App() {
       window.removeEventListener('beforeunload', handleRefresh);
     };
   }, []);
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      const handleRefresh = () => {
+        window.location.href = '/';
+      };
+      window.addEventListener('beforeunload', handleRefresh);
+      return () => {
+        window.removeEventListener('beforeunload', handleRefresh);
+      };
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     axios.get('https://a-kart-backend.onrender.com/auth/me', {
