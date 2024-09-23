@@ -16,9 +16,9 @@ const Admin = () => {
     })
       .then(response => {
         setAdminInfo(response.data);
-        console.log(response.data);
+        console.log('Admin Info:', response.data);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log('Error fetching admin info:', err));
   }, []);
 
   return (
