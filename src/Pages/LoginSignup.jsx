@@ -108,8 +108,6 @@ function LoginSignup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-
     try {
       const res = await axios.post(`https://a-kart-backend.onrender.com/auth/login`, { email, password });
       console.log('Response from server:', res.data);
@@ -137,7 +135,6 @@ function LoginSignup() {
         console.log(res.data);
       }
     } catch (err) {
-      setIsLoading(false);
       if (err.response && err.response.status === 401) {
         alert("Invalid email or password.");
       } else {
