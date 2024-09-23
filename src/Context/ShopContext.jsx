@@ -8,7 +8,7 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const [userId, setUserId] = useState(null);
   const [userRole, setUserRole] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     axios.get(`https://a-kart-backend.onrender.com/product/allproducts`)
@@ -21,12 +21,14 @@ const ShopContextProvider = (props) => {
 
     const fetchUserIdAndCart = async () => {
       try {
-        const userResponse = await axios.get(`https://a-kart-backend.onrender.com/auth/me`, {
-          withCredentials: true,
-        });
+        const userResponse = await axios.get('https://a-kart-backend.onrender.com/auth/me', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
         const user = userResponse.data;
         setUserId(user._id);
-        setUserRole(user.role); 
+        setUserRole(user.role);
 
         const cartResponse = await axios.get(`https://a-kart-backend.onrender.com/auth/cart/${user._id}`, {
           withCredentials: true,
@@ -148,8 +150,8 @@ const ShopContextProvider = (props) => {
     syncLocalCartToServer,
     removeFromCart,
     setCartItems,
-    isLoading, 
-    setIsLoading 
+    isLoading,
+    setIsLoading
   };
 
   return (

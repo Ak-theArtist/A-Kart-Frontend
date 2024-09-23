@@ -51,7 +51,11 @@ const UserProfile = (props) => {
     useEffect(() => {
         if (userId) {
             setIsLoading(true);
-            axios.get(`https://a-kart-backend.onrender.com/auth/me`, { withCredentials: true })
+            axios.get('https://a-kart-backend.onrender.com/auth/me', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
                 .then(res => {
                     setUserDetails(prev => ({
                         ...res.data,
@@ -80,8 +84,10 @@ const UserProfile = (props) => {
 
     // Fetch logged-in user data
     useEffect(() => {
-        axios.get(`https://a-kart-backend.onrender.com/auth/me`, {
-            withCredentials: true
+        axios.get('https://a-kart-backend.onrender.com/auth/me', {
+            headers: {
+                'Authorization': `Bearer ${token}` 
+            }
         })
             .then(res => {
                 setUserData(res.data);

@@ -56,7 +56,11 @@ const CartItems = () => {
                     console.error('User ID not available');
                     return;
                 }
-                const userResponse = await axios.get(`https://a-kart-backend.onrender.com/auth/me`, { withCredentials: true });
+                const userResponse = await axios.get('https://a-kart-backend.onrender.com/auth/me', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
                 const user = userResponse.data;
                 setAddresses(user.address || []);
                 setPincodes(user.pincode || []);

@@ -43,7 +43,11 @@ function App() {
   }, [isLoading]);
 
   useEffect(() => {
-     axios.get('https://a-kart-backend.onrender.com/auth/me', { withCredentials: true })
+    axios.get('https://a-kart-backend.onrender.com/auth/me', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then(response => {
         setAdminInfo(response.data);
         console.log(response.data);
@@ -94,7 +98,7 @@ function App() {
               <Route path="/product/:productId" element={<Product />} />
               <Route exact path="/cart" element={<Cart />} />
               <Route exact path="/login" element={<LoginSignup />} />
-              <Route path="*" element={<NoRoute />} /> 
+              <Route path="*" element={<NoRoute />} />
             </Routes>
             <ConditionalFooter />
           </>

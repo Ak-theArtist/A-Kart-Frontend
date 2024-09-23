@@ -12,9 +12,10 @@ const AllUsers = () => {
             .then(response => {
                 setUsers(response.data);
             })
-            .catch(err => console.error(err));
-
-            axios.get(`https://a-kart-backend.onrender.com/auth/me`, { withCredentials: true })
+            .catch(err => console.error(err));           
+            axios.get(`https://a-kart-backend.onrender.com/auth/me`, { headers: {
+                'Authorization': `Bearer ${token}` 
+            } })
             .then(response => {
                 setAdminInfo(response.data);
             })

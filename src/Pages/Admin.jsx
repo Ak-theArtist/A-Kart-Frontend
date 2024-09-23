@@ -8,7 +8,11 @@ const Admin = () => {
   const [adminInfo, setAdminInfo] = useState(null);
 
   useEffect(() => {
-    axios.get('https://a-kart-backend.onrender.com/auth/me', { withCredentials: true })
+    axios.get('https://a-kart-backend.onrender.com/auth/me', {
+      headers: {
+          'Authorization': `Bearer ${token}` 
+      }
+  })
       .then(response => {
         setAdminInfo(response.data);
         console.log(response.data);

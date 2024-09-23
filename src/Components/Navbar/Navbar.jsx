@@ -111,12 +111,24 @@ const Navbar = (props) => {
 
     // Fetch logged-in user data
     useEffect(() => {
-        axios.get(`https://a-kart-backend.onrender.com/auth/me`, { withCredentials: true })
+        const token = localStorage.getItem('token');
+        if (token) {
+            axios.get('https://a-kart-backend.onrender.com/auth/me', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             .then(response => {
                 console.log(response.data);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.error('Error fetching user:', err); 
+            });
+        } else {
+            console.error('No token found');
+        }
     }, []);
+    
 
     return (
         <>
