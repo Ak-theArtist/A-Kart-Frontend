@@ -117,17 +117,15 @@ function LoginSignup() {
       if (tempToken) {
         localStorage.removeItem("cartItems");
       }
-
       if (res.data.token) {
         localStorage.setItem('token', res.data.token);
         try {
           const decoded = jwtDecode(res.data.token);
           if (decoded.role === 'admin') {
-            navigate('/admin');
+            window.location.href = '/admin';
           } else {
-            navigate('/');
+            window.location.href = '/'; 
           }
-          window.location.reload();
         } catch (error) {
           console.error('Invalid token:', error.message);
           alert("Invalid token received");
