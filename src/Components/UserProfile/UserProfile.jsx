@@ -300,7 +300,6 @@ const UserProfile = (props) => {
                 pincode: pincodes
             }, { withCredentials: true });
             window.alert('Addresses and pincodes updated successfully.');
-            window.location.reload();
         } catch (error) {
             console.error('Error updating addresses and pincodes:', error);
             window.alert('Error updating addresses and pincodes.');

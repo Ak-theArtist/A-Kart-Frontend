@@ -123,10 +123,10 @@ function LoginSignup() {
         try {
           const decoded = jwtDecode(res.data.token);
           if (decoded.role === 'admin') {
-            window.location.reload();
+            console.log("admin is logged in");
           }
           else{
-            window.location.reload();
+            console.log("admin is not logged in, User is logged in");
           }
         } catch (error) {
           console.error('Invalid token:', error.message);

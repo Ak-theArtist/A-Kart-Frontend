@@ -48,7 +48,8 @@ const Navbar = (props) => {
                     localStorage.removeItem('email');
                     localStorage.removeItem('password');
                     localStorage.removeItem('cartItems');
-                    window.location.reload();
+                    // window.location.reload();
+                    window.location.href('/login');
                 }
             })
             .catch(err => {

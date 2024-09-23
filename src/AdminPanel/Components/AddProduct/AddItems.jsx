@@ -33,7 +33,6 @@ const AddProduct = () => {
     axios.post('https://a-kart-backend.onrender.com/product/addproduct', formData)
       .then(res => {
         console.log(res);
-        window.location.reload();
       })
       .catch(err => console.log(err));
   };
