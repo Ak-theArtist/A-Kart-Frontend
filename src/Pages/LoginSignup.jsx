@@ -21,33 +21,17 @@ function LoginSignup() {
   axios.defaults.withCredentials = true;
 
   const { setIsLoading } = useContext(userContext);
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
     document.title = 'A-Kart - Login';
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        const currentTime = Date.now() / 1000;
-        if (decoded.exp < currentTime) {
-          localStorage.removeItem('token');
-        } else {
-          navigate('/');
-        }
-      } catch (error) {
-        console.error('Invalid token:', error.message);
-        localStorage.removeItem('token');
-      }
-    }
+
     if (state === 'Login') {
       const storedEmail = localStorage.getItem('email') || '';
       const storedPassword = localStorage.getItem('password') || '';
       setEmail(storedEmail);
       setPassword(storedPassword);
     }
-  }, [state, navigate]);
-
+  }, [state]);
 
   const isValidEmail = (email) => {
     const re = /^[^\s@]+@(?:gmail\.com|yahoo\.com|outlook\.com|hotmail\.com)$/;
@@ -74,6 +58,7 @@ function LoginSignup() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     if (!name || !email || !password || !rePassword) {
       alert("Please fill in all fields.");
@@ -100,7 +85,7 @@ function LoginSignup() {
     }
 
     try {
-      await axios.post('https://a-kart-backend.onrender.com/auth/register', { name, email, password });
+      await axios.post(`https://a-kart-backend.onrender.com/auth/register`, { name, email, password });
       localStorage.setItem('email', email);
       localStorage.setItem('password', password);
       setAlertMessage('Registration successful! Redirecting to login...');
@@ -126,18 +111,17 @@ function LoginSignup() {
     setIsLoading(true);
 
     try {
-      const res = await axios.post('https://a-kart-backend.onrender.com/auth/login', { email, password });
+      const res = await axios.post(`https://a-kart-backend.onrender.com/auth/login`, { email, password });
       console.log('Response from server:', res.data);
-      const tempCart = localStorage.getItem("cartItems");
-      if (tempCart) {
+      const tempToken = localStorage.getItem("cartItems");
+      if (tempToken) {
         localStorage.removeItem("cartItems");
       }
-      if (token) {
-        localStorage.setItem('token', token);
 
+      if (res.data.token) {
+        localStorage.setItem('token', res.data.token);
         try {
-          const decoded = jwtDecode(token);
-          console.log('Decoded token:', decoded);
+          const decoded = jwtDecode(res.data.token);
           if (decoded.role === 'admin') {
             navigate('/admin');
           } else {
@@ -150,29 +134,23 @@ function LoginSignup() {
         }
       } else {
         alert(res.data.error || "Invalid Credentials");
+        console.log(res.data);
       }
     } catch (err) {
-      if (err.response) {
-        setIsLoading(false);
-        if (err.response.status === 401) {
-          alert("Invalid email or password.");
-        } else {
-          console.error('An error occurred:', err);
-          alert("An error occurred. Please try again.");
-        }
-      } else {
-        console.error('An error occurred:', err);
-        alert("An error occurred. Please check your network connection.");
-      }
-    } finally {
       setIsLoading(false);
+      if (err.response && err.response.status === 401) {
+        alert("Invalid email or password.");
+      } else {
+        console.error(err);
+        alert("An error occurred. Please try again.");
+      }
     }
   };
 
   const handleRequestOtp = async () => {
     try {
       console.log('Requesting OTP for email:', email);
-      const response = await axios.post('https://a-kart-backend.onrender.com/auth/forgotpassword', { email });
+      const response = await axios.post(`https://a-kart-backend.onrender.com/auth/forgotpassword`, { email });
       console.log('OTP request response:', response.data);
       setForgotPasswordStep(2);
     } catch (err) {
@@ -187,7 +165,7 @@ function LoginSignup() {
     try {
       const payload = { email, otp };
       console.log('Verifying OTP with data:', payload);
-      const response = await axios.post('https://a-kart-backend.onrender.com/auth/verifyotp', payload);
+      const response = await axios.post(`https://a-kart-backend.onrender.com/auth/verifyotp`, payload);
       console.log('OTP verified successfully:', response.data);
       setForgotPasswordStep(3);
     } catch (err) {
@@ -209,7 +187,7 @@ function LoginSignup() {
     }
     try {
       console.log('Updating password with data:', { email, otp, newPassword });
-      await axios.post('https://a-kart-backend.onrender.com/auth/updatepassword', { email, otp, newPassword });
+      await axios.post(`https://a-kart-backend.onrender.com/auth/updatepassword`, { email, otp, newPassword });
       alert('Password updated successfully');
       setForgotPasswordStep(1);
       setState("Login");
