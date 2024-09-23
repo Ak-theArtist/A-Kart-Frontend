@@ -167,7 +167,6 @@ function LoginSignup() {
     }
   };
 
-
   const handleRequestOtp = async () => {
     try {
       console.log('Requesting OTP for email:', email);

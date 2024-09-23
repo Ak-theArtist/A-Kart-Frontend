@@ -32,14 +32,14 @@ const Navbar = (props) => {
     // Logout function
     const handleLogout = () => {
         setIsLoading(true);
-        axios.get(`https://a-kart-backend.onrender.com/auth/logout`, { withCredentials: true })
+        axios.get(`https://a-kart-backend.onrender.com/auth/logout`)
             .then(res => {
                 if (res.data === "Success") {
                     console.log('Logout successful');
-
                     localStorage.removeItem('token');
                     localStorage.removeItem('email');
                     localStorage.removeItem('password');
+                    localStorage.removeItem('cartItems');
                     window.location.reload();
                 }
             })
@@ -50,6 +50,7 @@ const Navbar = (props) => {
                 setIsLoading(false);
             });
     };
+    
 
     useEffect(() => {
         setBtnText(props.mode === 'light' ? "Dark Mode" : "Light Mode");
@@ -101,15 +102,6 @@ const Navbar = (props) => {
             bsOffcanvas.hide();
         }
     };
-    // const closeOffcanvas = () => {
-    //     const offcanvasElement = document.getElementById('offcanvasSidebar');
-    //     const bsOffcanvas = Offcanvas.getInstance(offcanvasElement);
-    //     if (bsOffcanvas) {
-    //         bsOffcanvas.hide();
-    //     }
-    // };  
-
-    // Fetch logged-in user data
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
