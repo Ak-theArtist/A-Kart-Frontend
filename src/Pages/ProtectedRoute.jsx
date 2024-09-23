@@ -39,9 +39,9 @@ const ProtectedRoute = ({ element: Component, ...rest }) => {
     }
 
     if (!user || (user.role !== 'admin' && user.role !== 'superadmin')) {
-        return <ErrorPage />;
+        return <ErrorPage />; 
     }
-
+    
     return <Component {...rest} user={user} />;
 };
 
