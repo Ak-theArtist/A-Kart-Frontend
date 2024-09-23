@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Shop from './Pages/Shop';
 import ShopCategory from './Pages/ShopCategory';
 import Product from './Pages/Product';
@@ -28,7 +28,6 @@ import { Navigate } from 'react-router-dom';
 export const userContext = createContext();
 
 function App() {
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [adminInfo, setAdminInfo] = useState(null);
@@ -45,16 +44,17 @@ function App() {
     }
   }, [isLoading]);
 
-  //for unwanted refresh
+  // Prevent unwanted refresh
   useEffect(() => {
-    const handleRefresh = () => {
-      navigate('/'); // Navigate to home page
+    const handleRefresh = (event) => {
+      window.location.href = '/'; 
     };
+
     window.addEventListener('beforeunload', handleRefresh);
     return () => {
       window.removeEventListener('beforeunload', handleRefresh);
     };
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     axios.get('https://a-kart-backend.onrender.com/auth/me', {
