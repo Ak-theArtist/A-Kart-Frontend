@@ -17,13 +17,13 @@ const AddProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     // Validation
     if (!productName || !productDescription || !category || !old_price || !new_price || productImages.some(img => !img)) {
       alert("All fields are required!");
       return;
     }
-
+  
     const formData = new FormData();
     formData.append('name', productName);
     formData.append('description', productDescription);
@@ -31,24 +31,26 @@ const AddProduct = () => {
     formData.append('old_price', old_price);
     formData.append('new_price', new_price);
     productImages.forEach((image, index) => {
-      formData.append('image', image);
+      formData.append('image', image); 
     });
-
-    axios.post('https://a-kart-backend.onrender.com/product/addproduct', formData)
-      .then(res => {
-        setMessage('Product added successfully!');
-        setProductName('');
-        setProductDescription('');
-        setCategory('');
-        setOld_price('');
-        setNew_price('');
-        setProductImages([null, null, null, null]);
-      })
-      .catch(err => {
-        console.error(err);
-        setMessage('Error adding product. Please try again.');
-      });
-  };
+  
+    axios.post('https://a-kart-backend.onrender.com/product/addproduct', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
+    .then(res => {
+      setMessage('Product added successfully!');
+      setProductName('');
+      setProductDescription('');
+      setCategory('');
+      setOld_price('');
+      setNew_price('');
+      setProductImages([null, null, null, null]);
+    })
+    .catch(err => {
+      console.error(err);
+      setMessage('Error adding product. Please try again.');
+    });
+  };  
 
   const imageHandler = (index) => (e) => {
     const file = e.target.files[0];
