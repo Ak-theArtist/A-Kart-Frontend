@@ -128,6 +128,7 @@ function LoginSignup() {
           else{
             console.log("admin is not logged in, User is logged in");
             navigate('/');
+            window.location.reload();
           }
         } catch (error) {
           console.error('Invalid token:', error.message);
