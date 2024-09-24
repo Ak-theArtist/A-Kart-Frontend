@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Shop from './Pages/Shop';
 import ShopCategory from './Pages/ShopCategory';
 import Product from './Pages/Product';
@@ -77,7 +77,7 @@ function App() {
 
   return (
     <userContext.Provider value={{ user, setUser, setIsLoading }}>
-      <BrowserRouter>
+      <HashRouter>
         {isLoading ? (
           <Loading />
         ) : (
@@ -104,7 +104,7 @@ function App() {
             <ConditionalFooter />
           </>
         )}
-      </BrowserRouter>
+      </HashRouter>
     </userContext.Provider>
   );
 }
