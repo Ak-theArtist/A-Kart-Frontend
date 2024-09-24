@@ -122,6 +122,7 @@ function LoginSignup() {
           const decoded = jwtDecode(res.data.token);
           if (decoded.role === 'admin') {
             navigate('/admin');
+            window.location.reload();
             console.log("admin is logged in");
           }
           else{

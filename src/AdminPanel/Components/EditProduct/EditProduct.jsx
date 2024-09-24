@@ -54,6 +54,7 @@ const EditProduct = ({ productId, onClose }) => {
     })
       .then(res => {
         console.log(res);
+        window.location.reload();
         onClose();
       })
       .catch(err => console.log(err));

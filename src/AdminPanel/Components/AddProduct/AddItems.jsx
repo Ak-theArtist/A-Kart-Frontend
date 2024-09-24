@@ -45,6 +45,7 @@ const AddProduct = () => {
       setOld_price('');
       setNew_price('');
       setProductImages([null, null, null, null]);
+      window.location.reload();
     })
     .catch(err => {
       console.error(err);
