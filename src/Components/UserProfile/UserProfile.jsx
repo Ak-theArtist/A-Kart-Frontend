@@ -87,7 +87,7 @@ const UserProfile = (props) => {
     useEffect(() => {
         axios.get('https://a-kart-backend.onrender.com/auth/me', {
             headers: {
-                'Authorization': `Bearer ${token}` 
+                'Authorization': `Bearer ${token}`
             }
         })
             .then(res => {
@@ -300,6 +300,7 @@ const UserProfile = (props) => {
                 pincode: pincodes
             }, { withCredentials: true });
             window.alert('Addresses and pincodes updated successfully.');
+            window.location.reload();
         } catch (error) {
             console.error('Error updating addresses and pincodes:', error);
             window.alert('Error updating addresses and pincodes.');
@@ -636,10 +637,18 @@ const UserProfile = (props) => {
                         )}
                     </>
                 ) : (
-                    <div className='without-login'>
-                        <strong>You Have To Login First...</strong>
-                        <img className='gif-img' src={loginfirst} alt="" />
-                    </div>
+                    <>
+                        {token ? (
+                            <div className='without-login'>
+                                <strong>Loading...</strong>
+                            </div>
+                        ) : (
+                            <div className='without-login'>
+                                <strong>You Have To Login First...</strong>
+                                <img className='gif-img' src={loginfirst} alt="" />
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
         </div>
