@@ -6,7 +6,7 @@ import Sidebar from '../Sidebar/Sidebar';
 const AdminOrders = () => {
     const [orders, setOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [sortOption, setSortOption] = useState('');
+    const [sortOption, setSortOption] = useState('latest');
 
     useEffect(() => {
         axios.get(`https://a-kart-backend.onrender.com/order/allorders`)
@@ -52,6 +52,12 @@ const AdminOrders = () => {
 
     const sortedOrders = sortOrders(orders, sortOption);
 
+    // Prevent page refresh for sorting options
+    const handleSortClick = (event, option) => {
+        event.preventDefault(); 
+        setSortOption(option); 
+    };
+
     return (
         <>
             <Sidebar />
@@ -61,15 +67,15 @@ const AdminOrders = () => {
                     <div className="dropdown">
                         <button className="dropbtn">Sort Orders</button>
                         <div className="dropdown-content">
-                            <a href="#" onClick={() => setSortOption('')}>All Orders</a>
-                            <a href="#" onClick={() => setSortOption('pending')}>Pending Orders</a>
-                            <a href="#" onClick={() => setSortOption('latest')}>Latest Orders</a>
-                            <a href="#" onClick={() => setSortOption('oldest')}>Oldest Orders</a>
-                            <a href="#" onClick={() => setSortOption('shipped')}>Shipped Orders</a>
-                            <a href="#" onClick={() => setSortOption('delivered')}>Delivered Orders</a>
-                            <a href="#" onClick={() => setSortOption('cancelled')}>Cancelled Orders</a>
-                            <a href="#" onClick={() => setSortOption('highest-price')}>Highest to Lowest Price</a>
-                            <a href="#" onClick={() => setSortOption('lowest-price')}>Lowest to Highest Price</a>
+                            <a href="#" onClick={(e) => handleSortClick(e, '')}>All Orders</a>
+                            <a href="#" onClick={(e) => handleSortClick(e, 'pending')}>Pending Orders</a>
+                            <a href="#" onClick={(e) => handleSortClick(e, 'latest')}>Latest Orders</a>
+                            <a href="#" onClick={(e) => handleSortClick(e, 'oldest')}>Oldest Orders</a>
+                            <a href="#" onClick={(e) => handleSortClick(e, 'shipped')}>Shipped Orders</a>
+                            <a href="#" onClick={(e) => handleSortClick(e, 'delivered')}>Delivered Orders</a>
+                            <a href="#" onClick={(e) => handleSortClick(e, 'cancelled')}>Cancelled Orders</a>
+                            <a href="#" onClick={(e) => handleSortClick(e, 'highest-price')}>Highest to Lowest Price</a>
+                            <a href="#" onClick={(e) => handleSortClick(e, 'lowest-price')}>Lowest to Highest Price</a>
                         </div>
                     </div>
                 </div>

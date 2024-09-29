@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import './Navbar.css';
 import { userContext } from '../../App';
 import axios from 'axios';
@@ -28,6 +28,7 @@ const Navbar = (props) => {
     const { setIsLoading } = useContext(userContext);
     const user = useContext(userContext);
     const navigate = useNavigate();
+    const closeButtonRef = useRef(null);
 
     const token = localStorage.getItem('token');
 
@@ -37,29 +38,6 @@ const Navbar = (props) => {
             setUserData(decodedToken);
         }
     }, [token]);
-    // Logout function
-    const handleLogout = () => {
-        setIsLoading(true);
-        axios.get(`https://a-kart-backend.onrender.com/auth/logout`)
-            .then(res => {
-                if (res.data === "Success") {
-                    console.log('Logout successful');
-                    localStorage.removeItem('token');
-                    localStorage.removeItem('email');
-                    localStorage.removeItem('password');
-                    localStorage.removeItem('cartItems');
-                    navigate('/login');
-                    window.location.reload();
-                }
-            })
-            .catch(err => {
-                console.error('Error during logout:', err);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
-    };
-
 
     useEffect(() => {
         setBtnText(props.mode === 'light' ? "Dark Mode" : "Light Mode");
@@ -130,6 +108,47 @@ const Navbar = (props) => {
         }
     }, []);
 
+    const handleMenuClick = (menuType) => {
+        setMenu(menuType);
+        closeOffcanvas();
+        if (closeButtonRef.current) {
+            closeButtonRef.current.click();
+        }
+    };
+    const handleFormClick = () => {
+        closeOffcanvas();
+        if (closeButtonRef.current) {
+            closeButtonRef.current.click();
+        }
+    };
+    const handleModeToggle = () => {
+        props.changeMode();
+        handleFormClick();
+    };
+
+    // Logout function
+    const handleLogout = () => {
+        setIsLoading(true);
+        axios.get(`https://a-kart-backend.onrender.com/auth/logout`)
+            .then(res => {
+                if (res.data === "Success") {
+                    console.log('Logout successful');
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('email');
+                    localStorage.removeItem('password');
+                    localStorage.removeItem('cartItems');
+                    handleFormClick();
+                    navigate('/login');
+                    window.location.reload();
+                }
+            })
+            .catch(err => {
+                console.error('Error during logout:', err);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    };
 
     return (
         <>
@@ -146,28 +165,51 @@ const Navbar = (props) => {
                     <div className={`offcanvas offcanvas-end text-${props.mode === 'dark' ? 'light' : 'dark'} bgColor-${props.mode === 'light' ? '#ebeaea' : 'dark'}`} tabIndex="-1" id="offcanvasSidebar" data-bs-scroll="true" aria-labelledby="offcanvasSidebarLabel">
                         <div className={`offcanvas-header text-${props.mode === 'dark' ? 'light' : 'dark'} bgColor-${props.mode === 'light' ? '#ebeaea' : 'dark'}`}>
                             <h5 className="offcanvas-title" id="offcanvasSidebarLabel">A-Kart</h5>
-                            <button type="button" className={`btn-close ${props.mode === 'dark' ? 'invert' : ''} close-btn`} data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            <button
+                                type="button"
+                                ref={closeButtonRef}
+                                className={`btn-close ${props.mode === 'dark' ? 'invert' : ''} close-btn`}
+                                data-bs-dismiss="offcanvas"
+                                aria-label="Close">
+                            </button>
                         </div>
                         <div className={`offcanvas-body text-${props.mode === 'dark' ? 'light' : 'dark'} bgColor-${props.mode === 'light' ? '#ebeaea' : 'dark'}`}>
                             <ul className="navbar-nav me mb-lg-0 nav-menu">
                                 {userData && userData.role === 'admin' && (
-                                    <li className='admin-nav' onClick={() => { setMenu("admin"); closeOffcanvas(); }}>
-                                        <Link to="/admin" className="admin-link">
-                                            <img className='admin-logo' src={admin_logo} alt="Admin Logo" />Admin{menu === 'admin' && <hr />}
+                                    <li onClick={() => { setMenu("admin"); closeOffcanvas(); }} className="admin-nav">
+                                        <Link to="/admin" className="admin-link" aria-current="page">
+                                            <img className="admin-logo" src={admin_logo} alt="Admin Logo" />
+                                            Admin{menu === 'admin' && <hr />}
                                         </Link>
                                     </li>
+
                                 )}
-                                <li onClick={() => { setMenu("shop"); closeOffcanvas(); }} className="nav-item animate-left">
-                                    <Link className="nav-link active" aria-current="page" to="/">Shop{menu === 'shop' && <hr />}</Link>
+                                {/* Shop menu item */}
+                                <li onClick={() => handleMenuClick("shop")} className="nav-item animate-left">
+                                    <Link className="nav-link active" aria-current="page" to="/">
+                                        Shop{menu === 'shop' && <hr />}
+                                    </Link>
                                 </li>
-                                <li onClick={() => { setMenu("men"); closeOffcanvas(); }} className="nav-item animate-left">
-                                    <Link className="nav-link" to="/men">Men{menu === 'men' && <hr />}</Link>
+
+                                {/* Men menu item */}
+                                <li onClick={() => handleMenuClick("men")} className="nav-item animate-left">
+                                    <Link className="nav-link" to="/men">
+                                        Men{menu === 'men' && <hr />}
+                                    </Link>
                                 </li>
-                                <li onClick={() => { setMenu("women"); closeOffcanvas(); }} className="nav-item animate-left">
-                                    <Link className="nav-link" to="/women">Women{menu === 'women' && <hr />}</Link>
+
+                                {/* Women menu item */}
+                                <li onClick={() => handleMenuClick("women")} className="nav-item animate-left">
+                                    <Link className="nav-link" to="/women">
+                                        Women{menu === 'women' && <hr />}
+                                    </Link>
                                 </li>
-                                <li onClick={() => { setMenu("kids"); closeOffcanvas(); }} className="nav-item animate-left">
-                                    <Link className="nav-link" to="/kids">Kids{menu === 'kids' && <hr />}</Link>
+
+                                {/* Kids menu item */}
+                                <li onClick={() => handleMenuClick("kids")} className="nav-item animate-left">
+                                    <Link className="nav-link" to="/kids">
+                                        Kids{menu === 'kids' && <hr />}
+                                    </Link>
                                 </li>
                             </ul>
                             <form className="d-flex nav-login-cart align-items-center" role="search">
@@ -178,10 +220,7 @@ const Navbar = (props) => {
                                             type="checkbox"
                                             role="switch"
                                             id="flexSwitchCheckDefault"
-                                            onClick={() => {
-                                                props.changeMode();
-                                                setBtnText(props.mode === 'light' ? "Dark Mode" : "Light Mode");
-                                            }}
+                                            onClick={handleModeToggle}
                                         />
                                         <div className="slider"></div>
                                         {btnText}
@@ -193,8 +232,14 @@ const Navbar = (props) => {
                                     </div>
                                 ) : (
                                     <div>
-                                        <Link to="/login" className='animate-right'>
-                                            <button className="btn nav-login-btn" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to log in" data-bs-custom-class="custom-tooltip">
+                                        <Link to="/login" className="animate-right" onClick={handleFormClick}>
+                                            <button
+                                                className="btn nav-login-btn"
+                                                type="button"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Click to log in"
+                                                data-bs-custom-class="custom-tooltip">
                                                 Login
                                             </button>
                                         </Link>
@@ -202,16 +247,24 @@ const Navbar = (props) => {
                                 )}
                                 {(!userData || userData.role !== 'admin') && (
                                     <>
-                                        <Link to="/cart">
-                                            <img className={`rotate cart-icon ${props.mode === 'dark' ? 'invert' : ''}`} src={cart_icon} alt="Cart Icon" />
+                                        <Link to="/cart" onClick={handleFormClick}>
+                                            <img
+                                                className={`rotate cart-icon ${props.mode === 'dark' ? 'invert' : ''}`}
+                                                src={cart_icon}
+                                                alt="Cart Icon"
+                                            />
                                         </Link>
                                         <div className="nav-cart-count d-flex justify-content-center">{getTotalCartItems()}</div>
                                     </>
                                 )}
                                 {(!userData || userData.role !== 'admin') && (
                                     <div className='profile-icon'>
-                                        <Link to={`/profile`}>
-                                            <img className={`${props.mode === 'dark' ? 'invert' : ''}`} src={profile_icon} alt="Profile Icon" />
+                                        <Link to="/profile" onClick={handleFormClick}>
+                                            <img
+                                                className={`${props.mode === 'dark' ? 'invert' : ''}`}
+                                                src={profile_icon}
+                                                alt="Profile Icon"
+                                            />
                                         </Link>
                                     </div>
                                 )}
