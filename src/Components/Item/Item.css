@@ -103,6 +103,121 @@ hr {
     margin: 0;
 }
 
+/* Skeleton card styles */
+.skeleton {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .skeleton-image {
+    background-color: #e0e0e0;
+    height: 300px;
+    width: 250px;
+  }
+  
+  .skeleton-text {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    height: 20px;
+    margin: 5px 0;
+  }
+  
+  .skeleton-product-name {
+    width: 80%;
+  }
+  
+  .skeleton-discount {
+    width: 40%;
+  }
+  
+  .skeleton-price-old,
+  .skeleton-price-new {
+    width: 30%;
+  }
+  
+  /* Original styles */
+  .item {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    align-items: center;
+    margin-bottom: 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .inner-container {
+    height: 300px;
+    width: 250px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .inner-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  
+  #image2 {
+    opacity: 0;
+    object-fit: cover;
+    object-position: top;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  #image2:hover {
+    opacity: 1;
+  }
+  
+  .item p {
+    margin: 5px 0px;
+    padding: 5px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .item-prices {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .item-price-old {
+    color: #8c8c8c;
+    font-size: 15px;
+    font-weight: 500px;
+    text-decoration: line-through;
+  }
+  
+  .item-price-new {
+    color: #374152;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .item-discount {
+    color: #034cba;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .item:hover {
+    transform: scale(1.05);
+    transition: 0.1s;
+  }
+  
+
 @media (max-width: 768px) {
     .item p {
         padding: 0px !important;
